@@ -1,0 +1,20 @@
+GESTOR DE OBRAS
+================
+
+Como usar:
+1. Dê duplo clique no arquivo "gestor-obras.html"
+2. Ele vai abrir no seu navegador (Chrome, Edge, Firefox, etc)
+3. Pronto! Já pode criar obras, cronogramas, orçamentos e gerar PDFs.
+
+Observações:
+- Todos os dados ficam salvos no próprio navegador (localStorage).
+  Se limpar os dados do navegador, os projetos são apagados.
+- Funciona 100% offline, sem precisar de internet.
+- Não precisa instalar nada.
+
+Recursos:
+- Cadastro de obras com cronograma, orçamento, progresso e escopo
+- Anexar recibos de pagamento (foto)
+- Perfis de empresa com logo
+- Exportar para PDF (fundo branco garantido) e Excel (.xlsx real)
+- Modo claro / escuro

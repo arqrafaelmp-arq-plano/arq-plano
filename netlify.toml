@@ -1,0 +1,16 @@
+# Configuração de publicação do Arq-Plano no Netlify.
+# A pasta PUBLICAR contém o que vai para o ar; o resto do
+# repositório (docs, legacy) fica de fora do site publicado.
+
+[build]
+  publish = "PUBLICAR"
+  command = ""
+
+# Cabeçalhos de segurança e privacidade
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Robots-Tag = "noindex, nofollow"
