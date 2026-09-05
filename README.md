@@ -41,8 +41,7 @@ git commit -m "descrição da mudança"
 git push
 ```
 
-Para acompanhar a publicação:
-https://app.netlify.com/projects/ornate-fox-ea12bd/deploys
+Para acompanhar a publicação, veja a aba **Deploys** no painel do Netlify.
 
 ---
 
@@ -55,21 +54,20 @@ mesmo banco de dados do site publicado, então o comportamento é idêntico.
 
 ## Infraestrutura
 
-| Serviço | Função | Painel |
-|---|---|---|
-| **Netlify** | Hospedagem do site | [Painel](https://app.netlify.com/projects/ornate-fox-ea12bd) |
-| **Supabase** | Login e banco de dados | [Painel](https://supabase.com/dashboard/project/oemsumsaymhtsluttyte) |
+| Serviço | Função |
+|---|---|
+| **Netlify** | Hospedagem do site |
+| **Supabase** | Login e banco de dados |
+
+Os links dos painéis administrativos ficam com os responsáveis pelo projeto.
 
 ### Contas de acesso
 
 O cadastro público está **desativado** (`ALLOW_SIGNUP = false` no início do
-`index.html`). Novas contas são criadas manualmente:
+`index.html`). Novas contas são criadas manualmente pelo administrador em:
 
 **Supabase → Authentication → Users → Add user → Create new user**
 (marque a caixa *Auto Confirm User*)
-
-O administrador é `arqrafaelmp@gmail.com` — só ele vê o painel de usuários
-dentro do sistema.
 
 ### Segurança dos dados
 
