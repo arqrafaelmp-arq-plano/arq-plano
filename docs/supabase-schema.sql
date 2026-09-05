@@ -204,6 +204,43 @@ create policy "logos: usuario exclui os proprios"
   );
 
 
+-- ------------------------------------------------------------
+-- 9. COMPARTILHAMENTO PÚBLICO DO ESCOPO (link sem login)
+--    Cada obra pode ter um token de compartilhamento. Quem tiver
+--    o link (?share=TOKEN) consegue ver o Escopo em modo leitura,
+--    sem precisar de conta. Gerar um novo token invalida o antigo.
+-- ------------------------------------------------------------
+alter table public.projects add column if not exists share_token text unique;
+
+create index if not exists projects_share_token_idx
+  on public.projects (share_token) where share_token is not null;
+
+-- Função isolada: só devolve os campos necessários para a tela pública,
+-- e só quando o token bate exatamente. Não abre a tabela para o público
+-- (RLS de projects/profiles continua bloqueando leitura direta).
+create or replace function public.get_shared_project(p_token text)
+returns table (
+  name text, type text, client text, address text,
+  start_date date, status text, phases jsonb,
+  company text, cnpj text, phone text, contact_email text,
+  company_address text, logo text
+)
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select p.name, p.type, p.client, p.address, p.start_date, p.status, p.phases,
+         pr.company, pr.cnpj, pr.phone, pr.contact_email, pr.address as company_address, pr.logo
+  from public.projects p
+  join public.profiles pr on pr.id = p.user_id
+  where p.share_token = p_token
+  limit 1;
+$$;
+
+grant execute on function public.get_shared_project(text) to anon;
+
+
 -- ============================================================
 --  FIM — se rodou sem erro, o banco está pronto.
 -- ============================================================
